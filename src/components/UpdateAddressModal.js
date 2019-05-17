@@ -48,10 +48,7 @@ class UpdateAddressModal extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    await fetch(`http://localhost:4000/`+ this.props.scrape.name, {
-    // await fetch(`http://localhost:4000/`+ this.props.scrape._id, {
-    // await fetch(`../../../address.json`+ this.props.scrape._id, {
-    // await fetch(`http://localhost:5000/`+ this.props.record._id, {
+    await fetch(`https://salty-address-scrape5kitchen.herokuapp.com/`+ this.props.scrape._id, {
       method: "PUT",
       body: JSON.stringify(this.state),
       headers: {
@@ -60,7 +57,7 @@ class UpdateAddressModal extends Component {
       }
     )
     this.toggle();
-    this.props.refresh();//this refreshes the page after we're done
+    // this.props.refresh();//this refreshes the page after we're done
   };
     
   newRecord = {
@@ -95,7 +92,7 @@ class UpdateAddressModal extends Component {
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup onSubmit={this.handleSubmit}>
-                <Label for="record">
+                <Label for="address">
                   Make sure the address & name look good
                 </Label>
                 <Input 
