@@ -13,9 +13,15 @@ import {
 class UpdateAddressModal extends Component {
   state = {
     modal: false,
-    name: '',
+    name: this.props.name,
     url: '',
     address: '',
+  }
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
   }
 
   // enterModal = async () => {
@@ -27,22 +33,10 @@ class UpdateAddressModal extends Component {
     })
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log(this.state)
-    this.props.onSubmit(this.state)
-  }
-
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
   onChange = (e) => {
     console.log(this.state)
     this.setState({ 
-      [e.target.name]: e.target.value,   
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -60,6 +54,12 @@ class UpdateAddressModal extends Component {
     // this.props.refresh();//this refreshes the page after we're done
   };
     
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state)
+    this.props.onSubmit(this.state)
+  }
+
   newRecord = {
     name: this.state.name,
     url: this.state.url,
