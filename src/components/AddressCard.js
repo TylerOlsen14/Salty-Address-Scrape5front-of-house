@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import array from '../address.json'
-import { Card, CardText, CardBody, CardTitle } from 'reactstrap'
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button, CardFooter } from 'reactstrap'
 import UpdateAddressModal from './UpdateAddressModal'
 
 class AddressCard extends Component {
@@ -16,6 +16,14 @@ class AddressCard extends Component {
     .then(json => this.setState({ data: json }))
   }
 
+  onDeleteClick = async _id => {
+    await fetch(`https://salty-address-scrape5kitchen.herokuapp.com/`+ _id, {
+      method: 'DELETE'
+    }).then(resp => {
+      this.componentDidMount();
+    })
+  }
+
   render() {
     return (
       <div className="AddressCard">
@@ -23,12 +31,24 @@ class AddressCard extends Component {
         {this.state.data.map( scrape => (
           <Card className="p-3 m-3" style={{width:"300px"}} key={scrape._id}>
             <CardBody>
-              <CardTitle><h4>{scrape.name}</h4></CardTitle>
+              <CardTitle><h3>{scrape.name}</h3></CardTitle>
+              <CardSubtitle><h5>{scrape._id}</h5></CardSubtitle>
               <CardText className="URL"><a href={scrape.url}>{scrape.url}</a></CardText>
               <CardText className="Address">{scrape.address}</CardText>
             </CardBody>
-            <UpdateAddressModal scrape={scrape} />
-            {/* <updateAddressModal scrape={scrape} refresh={this.getAddress}/>  */}
+            <CardFooter>
+              <div style={{display: 'flex'}}>
+                <UpdateAddressModal scrape={scrape} refresh={this.getAddress}/>
+                <Button 
+                  style={{height: '2.4em'}}
+                  onClick={() => this.onDeleteClick(scrape._id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            </CardFooter>
+            {/* <UpdateAddressModal scrape={scrape} /> */}
+
           </Card>
         ))}
       </div>
