@@ -13,7 +13,7 @@ import {
 class UpdateAddressModal extends Component {
   state = {
     modal: false,
-    name: this.props.name,
+    name: '',
     url: '',
     address: '',
   }
@@ -22,6 +22,7 @@ class UpdateAddressModal extends Component {
     this.setState({
       modal: !this.state.modal
     });
+    console.log(this.state)
   }
 
   // enterModal = async () => {
@@ -34,37 +35,43 @@ class UpdateAddressModal extends Component {
   }
 
   onChange = (e) => {
-    console.log(this.state)
     this.setState({ 
       [e.target.name]: e.target.value,
     });
+    console.log(this.state)
+  }
+  
+  newAddress = {
+    name: this.props.name,
+    url: this.props.url,
+    address: this.props.address
   }
 
   onSubmit = async e => {
     e.preventDefault();
     await fetch(`https://salty-address-scrape5kitchen.herokuapp.com/`+ this.props.scrape._id, {
       method: "PUT",
-      body: JSON.stringify(this.state),
       headers: {
-          "Content-Type": "application/json",
-        }
-      }
-    )
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        address: this.state.address,
+        url: this.state.url,
+      }),
+    })
     this.toggle();
+    console.log(this.state)
     // this.props.refresh();//this refreshes the page after we're done
   };
     
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log(this.state)
-    this.props.onSubmit(this.state)
-  }
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   console.log(this.state)
+    // this.props.onSubmit(this.state)
+  // }
 
-  newRecord = {
-    name: this.state.name,
-    url: this.state.url,
-    address: this.state.address
-  }
 
   // componentDidMount() {
   //   console.log(this.props.id)
@@ -90,8 +97,10 @@ class UpdateAddressModal extends Component {
             Update Address Entry
           </ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup onSubmit={this.handleSubmit}>
+            {/* <Form onSubmit={this.onSubmit}>
+              <FormGroup onSubmit={this.handleSubmit}> */}
+            <Form>
+              <FormGroup>
                 <Label for="address">
                   Make sure the address & name look good
                 </Label>
@@ -123,6 +132,8 @@ class UpdateAddressModal extends Component {
                   color="dark"
                   style={{marginTop: '2rem'}}
                   block
+                  // onClick={this.handleSubmit}
+                  onClick={this.onSubmit}
                 >
                   Update Entry
                 </Button>

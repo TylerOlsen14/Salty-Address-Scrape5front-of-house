@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import array from '../address.json'
-import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap'
 import UpdateAddressModal from './UpdateAddressModal'
 
 class AddressCard extends Component {
@@ -21,12 +21,11 @@ class AddressCard extends Component {
       <div className="AddressCard">
         {/* {array.map( scrape => ( */}
         {this.state.data.map( scrape => (
-          <Card className="p-3 m-3" style={{width:"300px"}}>
+          <Card className="p-3 m-3" style={{width:"300px"}} key={scrape._id}>
             <CardBody>
               <CardTitle><h4>{scrape.name}</h4></CardTitle>
               <CardText className="URL"><a href={scrape.url}>{scrape.url}</a></CardText>
               <CardText className="Address">{scrape.address}</CardText>
-              <Button>Button</Button>
             </CardBody>
             <UpdateAddressModal scrape={scrape} />
             {/* <updateAddressModal scrape={scrape} refresh={this.getAddress}/>  */}
