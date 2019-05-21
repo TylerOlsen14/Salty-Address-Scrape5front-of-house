@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import NavBar from "./components/NavBar.js";
-import AddressCard from './components/AddressCard.js'
+import NavBar from "./components/NavBar";
+import AddressCard from './components/AddressCard'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
