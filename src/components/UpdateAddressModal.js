@@ -81,8 +81,7 @@ class UpdateAddressModal extends Component {
     return(
       <div>
         <Button
-          color="dark"
-          style={{marginBottom: '2rem'}}
+          color="secondary"
           onClick={this.toggle}
         >
           Update Record

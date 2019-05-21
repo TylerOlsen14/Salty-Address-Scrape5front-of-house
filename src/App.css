@@ -7,3 +7,9 @@ img{
   flex-direction: row;
   flex-wrap: wrap;
 }
+.ButtonGroup{
+  display: flex;
+  align-content: space-around;
+  justify-content: center;
+  flex-wrap: wrap;
+}
