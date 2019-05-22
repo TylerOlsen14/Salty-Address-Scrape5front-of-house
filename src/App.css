@@ -13,3 +13,10 @@ img{
   justify-content: center;
   flex-wrap: wrap;
 }
+.ReadModal{
+  width: 3rem;
+}
+.ReadModalButton{
+  width: 207px;
+  margin-bottom: .25rem;
+}
