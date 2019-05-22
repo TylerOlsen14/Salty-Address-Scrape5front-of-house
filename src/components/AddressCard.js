@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 // import array from '../address.json'
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button, CardFooter } from 'reactstrap'
 import UpdateAddressModal from './UpdateAddressModal'
+import ReadModal from './ReadModal'
 
 class AddressCard extends Component {
   constructor() {
@@ -38,10 +39,12 @@ class AddressCard extends Component {
             </CardBody>
             <CardFooter>
               <div style={{display: 'flex'}}>
+                <ReadModal scrape={scrape} />
                 <UpdateAddressModal scrape={scrape} refresh={this.getAddress}/>
                 <Button 
-                  style={{height: '2.4em'}}
+                  style={{height: '2.35em'}}
                   onClick={() => this.onDeleteClick(scrape._id)}
+                  color="danger"
                 >
                   Delete
                 </Button>

@@ -7,8 +7,16 @@ import {
  } from 'reactstrap'
 
 class ReadModal extends Component {
+  constructor() {
+    super();
+    this.state = { data: [] }
+  }
+
   state = {
     modal: false,
+    name: '',
+    url: '',
+    address: '',
   }
 
   toggle = () => {
@@ -19,7 +27,7 @@ class ReadModal extends Component {
   }
 
   componentDidMount() {
-    fetch('https://salty-address-scrape5kitchen.herokuapp.com/')
+    fetch(`https://salty-address-scrape5kitchen.herokuapp.com/`+ this.props.scrape._id)
     .then(res => res.json())
     .then(json => this.setState({ data: json }))
   }
@@ -42,16 +50,21 @@ class ReadModal extends Component {
           Read Complete Entry
         </Button>
         <div className="ReadModal">
-        {this.state.data.map( scrape => (
-          <Modal key={scrape._id}>
+        {/* {this.state.data.map( scrape => ( */}
+          <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          key={this.state._id}
+        >
             <ModalHeader>
-              <h3>{scrape.name}</h3>
+              <h2>Client: {this.state.name}</h2>
             </ModalHeader>
             <ModalBody>
-
+              <h5>Address: {this.state.address}</h5>
+              <h5>url: {this.state.url}</h5>
             </ModalBody>
           </Modal>
-        ))}
+        {/* ))} */}
         </div>
         
       </div>
