@@ -46,6 +46,7 @@ class ReadModal extends Component {
         <Button
           color="primary"
           onClick={this.toggle}
+          className="ReadModalButton"
         >
           Read Complete Entry
         </Button>
@@ -55,13 +56,22 @@ class ReadModal extends Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
           key={this.state._id}
+          className="ReadModal"
         >
             <ModalHeader>
-              <h2>Client: {this.state.name}</h2>
+              Client: {this.state.name}
             </ModalHeader>
             <ModalBody>
               <h5>Address: {this.state.address}</h5>
-              <h5>url: {this.state.url}</h5>
+              url: {this.state.url}
+              <div>
+                <Button
+                  color="danger"
+                  onClick={this.toggle}
+                >
+                  X
+                </Button>
+              </div>
             </ModalBody>
           </Modal>
         {/* ))} */}

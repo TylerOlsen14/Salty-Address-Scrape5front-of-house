@@ -38,7 +38,7 @@ class AddressCard extends Component {
               <CardText className="Address">{scrape.address}</CardText>
             </CardBody>
             <CardFooter>
-              <div style={{display: 'flex'}}>
+              <div className="ButtonGroup">
                 <ReadModal scrape={scrape} />
                 <UpdateAddressModal scrape={scrape} refresh={this.getAddress}/>
                 <Button 
