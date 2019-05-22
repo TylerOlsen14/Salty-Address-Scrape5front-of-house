@@ -31,11 +31,10 @@ class AddressCard extends Component {
         {/* {array.map( scrape => ( */}
         {this.state.data.map( scrape => (
           <Card className="p-3 m-3" style={{width:"300px"}} key={scrape._id}>
+            <CardTitle>{scrape.name}</CardTitle>
             <CardBody>
-              <CardTitle><h3>{scrape.name}</h3></CardTitle>
-              <CardSubtitle><h5>{scrape._id}</h5></CardSubtitle>
-              <CardText className="URL"><a href={scrape.url}>{scrape.url}</a></CardText>
               <CardText className="Address">{scrape.address}</CardText>
+              <CardText className="notes">{scrape.notes}</CardText>
             </CardBody>
             <CardFooter>
               <div className="ButtonGroup">
@@ -50,8 +49,6 @@ class AddressCard extends Component {
                 </Button>
               </div>
             </CardFooter>
-            {/* <UpdateAddressModal scrape={scrape} /> */}
-
           </Card>
         ))}
       </div>

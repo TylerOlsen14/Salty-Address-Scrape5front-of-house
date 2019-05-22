@@ -16,6 +16,7 @@ class UpdateAddressModal extends Component {
     name: '',
     url: '',
     address: '',
+    notes: '',
   }
 
   toggle = () => {
@@ -31,6 +32,7 @@ class UpdateAddressModal extends Component {
       name: this.props.scrape.name,
       url: this.props.scrape.url,
       address: this.props.scrape.address,
+      notes: this.props.scrape.notes
     })
   }
 
@@ -38,13 +40,13 @@ class UpdateAddressModal extends Component {
     this.setState({ 
       [e.target.name]: e.target.value,
     });
-    console.log(this.state)
   }
   
   newAddress = {
     name: this.props.name,
     url: this.props.url,
-    address: this.props.address
+    address: this.props.address,
+    notes: this.props.notes,
   }
 
   onSubmit = async e => {
@@ -53,29 +55,18 @@ class UpdateAddressModal extends Component {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: JSON.stringify({
         name: this.state.name,
         address: this.state.address,
         url: this.state.url,
+        notes: this.state.notes,
       }),
     })
     this.toggle();
     console.log(this.state)
     // this.props.refresh();//this refreshes the page after we're done
   };
-    
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   console.log(this.state)
-    // this.props.onSubmit(this.state)
-  // }
-
-
-  // componentDidMount() {
-  //   console.log(this.props.id)
-  // }
 
   render() {
     return(
@@ -91,13 +82,11 @@ class UpdateAddressModal extends Component {
           toggle={this.toggle}
         >
           <ModalHeader
-            toggle={this.toggle}
+            // toggle={this.toggle}
           >
             Update Address Entry
           </ModalHeader>
           <ModalBody>
-            {/* <Form onSubmit={this.onSubmit}>
-              <FormGroup onSubmit={this.handleSubmit}> */}
             <Form>
               <FormGroup>
                 <Label for="address">
@@ -126,6 +115,14 @@ class UpdateAddressModal extends Component {
                   // placeholder="Create coversation record"
                   onChange={this.onChange}
                   value={this.state.address}
+                />
+                <Input 
+                  type="textarea"
+                  name="notes"
+                  id="item"
+                  // placeholder="Create coversation record"
+                  onChange={this.onChange}
+                  value={this.state.notes}
                 />
                 <Button
                   color="dark"

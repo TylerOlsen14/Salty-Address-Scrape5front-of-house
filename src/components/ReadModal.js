@@ -17,6 +17,7 @@ class ReadModal extends Component {
     name: '',
     url: '',
     address: '',
+    notes: ''
   }
 
   toggle = () => {
@@ -38,6 +39,7 @@ class ReadModal extends Component {
       name: this.props.scrape.name,
       url: this.props.scrape.url,
       address: this.props.scrape.address,
+      notes: this.props.scrape.notes
     })
   }
   render() {
@@ -57,13 +59,15 @@ class ReadModal extends Component {
           toggle={this.toggle}
           key={this.state._id}
           className="ReadModal"
-        >
+          >
             <ModalHeader>
               Client: {this.state.name}
             </ModalHeader>
             <ModalBody>
               <h5>Address: {this.state.address}</h5>
               url: {this.state.url}
+              <br/>
+              notes: {this.state.notes}
               <div>
                 <Button
                   color="danger"
